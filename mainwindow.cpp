@@ -2,9 +2,10 @@
 #include "ui_mainwindow.h"
 
 #include <iostream>
+#include <vector>
 
 #include "load.h"
-#include <vector>
+#include "index.h"
 
 std::vector<std::string> games;
 std::vector<std::string> display;
@@ -31,22 +32,14 @@ MainWindow::MainWindow(QWidget *parent)
     for(auto &i : progressiveList) {
         progList->addItem(i.c_str());
     }
+
+    ui->btnStart->setDisabled(true);
+
+    ui->rbUk->setChecked(true);
 }
 
 MainWindow::~MainWindow() {
     delete ui;
-
-    for(auto &n : games){
-        std::cout<<n<<std::endl;
-    }
-
-    for(auto &n : display){
-        std::cout<<n<<std::endl;
-    }
-
-    for(auto &n : progressive){
-        std::cout<<n<<std::endl;
-    }
 }
 
 
@@ -99,6 +92,9 @@ void MainWindow::on_gameList_itemDoubleClicked(QListWidgetItem *item) {
                 ui->display->addItem(d.c_str());
         }
     }
+
+    if(!games.empty() and !progressive.empty())
+        ui->btnStart->setEnabled(true);
 }
 
 
@@ -125,6 +121,9 @@ void MainWindow::on_progressiveList_itemDoubleClicked(QListWidgetItem *item) {
             ui->progressive->addItem(prog.c_str());
         }
     }
+
+    if(!games.empty() and !progressive.empty())
+        ui->btnStart->setEnabled(true);
 }
 
 
@@ -177,4 +176,45 @@ void MainWindow::on_btnClear_clicked() {
     ui->game->clear();
     ui->display->clear();
     ui->progressive->clear();
+
+    //Deshabilita el boton Start
+    ui->btnStart->setDisabled(true);
 }
+
+void MainWindow::on_btnStart_clicked() {
+
+    constexpr char path[] = "Document/%s";
+    char temp[100];
+    char command[100];
+
+    if (ui->rbTrunk->isChecked()) {
+
+        sprintf(temp, path, "Trunk/MainProject/%s");
+
+        for (auto& g : games) {
+            sprintf(command, temp, g.c_str());
+            std::cout<<command<<std::endl;
+        }
+
+
+    } else {
+        if (ui->rbClass2->isChecked()) {
+            sprintf(temp, path, "Branch/ClassII/M");
+        }
+
+
+    }
+
+    //std::cout<<path<<std::endl;
+
+    /*for (unsigned int i = 0 ; i < games.size(); i++) {
+        for(auto &n : games[i]){
+            n = tolower(n);
+        }
+    }
+
+    for(auto &n : games){
+        std::cout<<n<<std::endl;
+    }*/
+}
+

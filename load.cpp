@@ -2,10 +2,13 @@
 #include "Tinyxml2/tinyxml2.h"
 #include <iostream>
 
+#include "index.h"
+
 std::map<std::string, std::string> infoList;
 std::vector<std::string> progressiveList;
 
 void readInfo() {
+
     tinyxml2::XMLDocument doc;
     tinyxml2::XMLError result = doc.LoadFile("Info.xml");
 
@@ -31,4 +34,9 @@ void readInfo() {
     }
 
     doc.Clear();
+}
+
+void readPath(char* path, int index) {
+
+
 }

@@ -16,6 +16,7 @@ SOURCES += \
 
 HEADERS += \
     Tinyxml2/tinyxml2.h \
+    index.h \
     load.h \
     mainwindow.h
 
