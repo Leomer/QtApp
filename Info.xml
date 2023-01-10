@@ -1,96 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Games>
-    <Game id="Game0001">
-        <Display>0</Display>
-    </Game>
-    <!-- <Game id="Game0002">
-        <Display>0</Display>
-    </Game>
-    <Game id="Game0003">
-        <Display>0</Display>
-    </Game>
-    <Game id="Game0004">
-        <Display>0</Display>
-    </Game>
-    <Game id="Game0005">
-        <Display>0</Display>
-    </Game>
-    <Game id="Game0006">
-        <Display>0</Display>
-    </Game>
-    <Game id="Game0007">
-        <Display>0</Display>
-    </Game>
-    <Game id="Game0008">
-        <Display>0</Display>
-    </Game>
-    <Game id="Game0009">
-        <Display>0</Display>
-    </Game>
-    <Game id="Game0010">
-        <Display>0</Display>
-    </Game>
-    <Game id="Game0011">
-        <Display>0</Display>
-    </Game>
-    <Game id="Game0012">
-        <Display>0</Display>
-    </Game>
-    <Game id="Game0013">
-        <Display>0</Display>
-    </Game>
-    <Game id="Game0014">
-        <Display>0</Display>
-    </Game>
-    <Game id="Game0015">
-        <Display>0</Display>
-    </Game>
-    <Game id="Game0016">
-        <Display>0</Display>
-    </Game>
-    <Game id="Game0017">
-        <Display>0</Display>
-    </Game>
-    <Game id="Game0018">
-        <Display>0</Display>
-    </Game>
-    <Game id="Game0019">
-        <Display>0</Display>
-    </Game>
-    <Game id="Game0020">
-        <Display>0</Display>
-    </Game> -->
-    <Game id="Game3030">
-        <Display>Display1501</Display>
-    </Game>
-    <Game id="Game3031">
-        <Display>Display1501</Display>
-    </Game>
-    <Game id="Game3032">
-        <Display>Display1501</Display>
-    </Game>
-    <Game id="Game3033">
-        <Display>Display1502</Display>
-    </Game>
-    <Game id="Game3034">
-        <Display>Display1502</Display>
-    </Game>
-    <Game id="Game3035">
-        <Display>Display1502</Display>
-    </Game>
-    <Game id="Game3038">
-        <Display>Display1503</Display>
-    </Game>
-    <Game id="Game3039">
-        <Display>Display1503</Display>
-    </Game>
-    <Game id="Game3040">
-        <Display>Display1503</Display>
-    </Game>
+    <Game id="Game0001">0</Game>
+    <Game id="Game0002">0</Game>
+    <Game id="Game0003">0</Game>
+    <Game id="Game0004">0</Game>
+    <Game id="Game0005">0</Game>
+    <Game id="Game0006">0</Game>
+    <Game id="Game0007">0</Game>
+    <Game id="Game0008">0</Game>
+    <Game id="Game0009">0</Game>
+    <Game id="Game0010">0</Game>
+    <Game id="Game0011">0</Game>
+    <Game id="Game0012">0</Game>
+    <Game id="Game0013">0</Game>
+    <Game id="Game0014">0</Game>
+    <Game id="Game0015">0</Game>
+    <Game id="Game0016">0</Game>
+    <Game id="Game0017">0</Game>
+    <Game id="Game0018">0</Game>
+    <Game id="Game0019">0</Game>
+    <Game id="Game0020">0</Game>
+    <Game id="Game0021">0</Game>
+    <Game id="Game0022">0</Game>
+    <Game id="Game0023">0</Game>
+    <Game id="Game0024">0</Game>
+    <Game id="Game0025">0</Game>
+    <Game id="Game0026">0</Game>
+    <Game id="Game0027">0</Game>
+    <Game id="Game0028">0</Game>
+    <Game id="Game0029">0</Game>
+    <Game id="Game3030">Display1501</Game>
+    <Game id="Game3031">Display1501</Game>
+    <Game id="Game3032">Display1501</Game>
+    <Game id="Game3033">Display1502</Game>
+    <Game id="Game3034">Display1502</Game>
+    <Game id="Game3035">Display1502</Game>
+    <Game id="Game3038">Display1503</Game>
+    <Game id="Game3039">Display1503</Game>
+    <Game id="Game3040">Display1503</Game>
 </Games>
 <Progressive>
-    <Prog>15</Prog>
-    <Prog>16</Prog>
-    <Prog>17</Prog>
-    <Prog>20</Prog>
+    <Prog id="Prog0004">Display0004</Prog>
+    <Prog id="Prog0006">Display0006</Prog>
+    <Prog id="Prog0012">Display0012</Prog>
+    <Prog id="Prog0014">Display0014</Prog>
+    <Prog id="Prog0015">0</Prog>
+    <Prog id="Prog0016">0</Prog>
+    <Prog id="Prog0018">0</Prog>
+    <Prog id="Prog0020">0</Prog>
+    <Prog id="Prog0021">0</Prog>
+    <Prog id="Prog0022">0</Prog>
 </Progressive>

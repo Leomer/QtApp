@@ -6,7 +6,7 @@
 #include <vector>
 
 extern std::map<std::string, std::string> infoList;
-extern std::vector<std::string> progressiveList;
+extern std::map<std::string, std::string> progressiveList;
 
 void readInfo();
 void readPath(char* path, int n);

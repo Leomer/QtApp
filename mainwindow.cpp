@@ -5,11 +5,11 @@
 #include <vector>
 
 #include "load.h"
-#include "index.h"
 
 std::vector<std::string> games;
 std::vector<std::string> display;
 std::vector<std::string> progressive;
+int rev = 0;
 
 bool duplicate = false;
 
@@ -29,8 +29,8 @@ MainWindow::MainWindow(QWidget *parent)
         gameList->addItem(key.c_str());
     }
 
-    for(auto &i : progressiveList) {
-        progList->addItem(i.c_str());
+    for(const auto& [key, value] : progressiveList) {
+        progList->addItem(key.c_str());
     }
 
     ui->btnStart->setDisabled(true);
@@ -45,53 +45,58 @@ MainWindow::~MainWindow() {
 
 void MainWindow::on_gameList_itemDoubleClicked(QListWidgetItem *item) {
 
-    auto data = item->text();
+    std::string tmpKey, tmpValue;
     duplicate = false;
 
     for(const auto& [key, value] : infoList) {
-        if(key.c_str() !=  data)
-            continue;
-
-        //Se busca el duplicado de key en el vector games
-        if(!games.empty()){
-            for( auto& g : games) {
-                if(key.c_str() == g)
-                    duplicate = true;
-            }
-        }
-
-        //Si no existe duplicado se agrega el dato al vector y se reordenara, luego se agregara a la lista
-        if(!duplicate) {
-            games.emplace_back(data.toStdString());
-            sort(games.begin(), games.end());
-
-            ui->game->clear();
-
-            for(auto& g : games)
-                ui->game->addItem(g.c_str());
-        }
-
-        duplicate = false;
-
-        //Se busca el duiplicado de value en el vector Display
-        if(!display.empty()){
-            for ( auto& d : display) {
-                if (value.c_str() == d)
-                    duplicate = true;
-            }
-        }
-
-        //Si no existe duplicado y no tiene valor 0, se agrega el dato al vector y se reordenara, luego se agregara a la lista
-        if(!duplicate and value != "0") {
-            display.emplace_back(value.c_str());
-            sort(display.begin(), display.end());
-
-            ui->display->clear();
-
-            for(auto& d : display)
-                ui->display->addItem(d.c_str());
+        if(key.c_str() ==  item->text()) {
+            tmpKey = key.c_str();
+            tmpValue = value.c_str();
+            break;
         }
     }
+
+
+    //Se busca el duplicado de key en el vector games
+    if(!games.empty()){
+        for(auto& g : games) {
+            if(g == tmpKey)
+                duplicate = true;
+        }
+    }
+
+    //Si no existe duplicado se agrega el dato al vector y se reordenara, luego se agregara a la lista
+    if(!duplicate) {
+        games.emplace_back(tmpKey);
+        sort(games.begin(), games.end());
+
+        ui->game->clear();
+
+        for(auto& g : games)
+            ui->game->addItem(g.c_str());
+    }
+
+    duplicate = false;
+
+    //Se busca el duiplicado de value en el vector Display
+    if(!display.empty()){
+        for ( auto& d : display) {
+            if (d == tmpValue)
+                duplicate = true;
+        }
+    }
+
+    //Si no existe duplicado y no tiene valor 0, se agrega el dato al vector y se reordenara, luego se agregara a la lista
+    if(!duplicate and tmpValue != "0") {
+        display.emplace_back(tmpValue);
+        sort(display.begin(), display.end());
+
+        ui->display->clear();
+
+        for(auto& d : display)
+            ui->display->addItem(d.c_str());
+    }
+
 
     if(!games.empty() and !progressive.empty())
         ui->btnStart->setEnabled(true);
@@ -100,18 +105,28 @@ void MainWindow::on_gameList_itemDoubleClicked(QListWidgetItem *item) {
 
 void MainWindow::on_progressiveList_itemDoubleClicked(QListWidgetItem *item) {
 
-    auto data = item->text();
+    std::string tmpKey, tmpValue;
     duplicate = false;
 
+    for(const auto& [key, value] : progressiveList) {
+        if(key.c_str() ==  item->text()) {
+            tmpKey = key.c_str();
+            tmpValue = value.c_str();
+            break;
+        }
+    }
+
+    //Se busca el duplicado de key en el vector progressive
     if(!progressive.empty()) {
         for(auto& prog : progressive) {
-            if(prog.c_str() == data)
+            if(prog.c_str() == tmpKey)
                 duplicate = true;
         }
     }
 
+    //Si no existe duplicado se agrega el dato al vector y se reordenara, luego se agregara a la lista
     if(!duplicate) {
-        progressive.emplace_back(data.toStdString());
+        progressive.emplace_back(tmpKey);
 
         sort(progressive.begin(), progressive.end());
 
@@ -119,6 +134,29 @@ void MainWindow::on_progressiveList_itemDoubleClicked(QListWidgetItem *item) {
 
         for(auto& prog : progressive) {
             ui->progressive->addItem(prog.c_str());
+        }
+    }
+
+    duplicate = false;
+
+    //Se busca el duplicado de key en el vector Display
+    if(!display.empty()) {
+        for(auto& d : display) {
+            if(d.c_str() == tmpValue)
+                duplicate = true;
+        }
+    }
+
+    //Si no existe duplicado se agrega el dato al vector y se reordenara, luego se agregara a la lista
+    if(!duplicate and tmpValue != "0") {
+        display.emplace_back(tmpValue);
+
+        sort(display.begin(), display.end());
+
+        ui->display->clear();
+
+        for(auto& d : display) {
+            ui->display->addItem(d.c_str());
         }
     }
 
@@ -176,6 +214,7 @@ void MainWindow::on_btnClear_clicked() {
     ui->game->clear();
     ui->display->clear();
     ui->progressive->clear();
+    ui->lbRev->clear();
 
     //Deshabilita el boton Start
     ui->btnStart->setDisabled(true);
@@ -187,6 +226,8 @@ void MainWindow::on_btnStart_clicked() {
     char temp[100];
     char command[100];
 
+    rev = ui->lbRev->text().toInt();
+
     if (ui->rbTrunk->isChecked()) {
 
         sprintf(temp, path, "Trunk/MainProject/%s");
@@ -196,12 +237,18 @@ void MainWindow::on_btnStart_clicked() {
             std::cout<<command<<std::endl;
         }
 
-
     } else {
         if (ui->rbClass2->isChecked()) {
             sprintf(temp, path, "Branch/ClassII/M");
         }
 
+        if (ui->rbClass3->isChecked()) {
+            sprintf(temp, path, "Branch/ClassIII/M");
+        }
+
+        if (ui->rbUk->isChecked()) {
+            sprintf(temp, path, "Branch/UK/M");
+        }
 
     }
 
